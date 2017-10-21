@@ -16,6 +16,7 @@ public class SortingTest {
     GrowingBubbleSorter growingBubbleSorter;
     MergeSorter mergeSorter;
     QuickSorter quickSorter;
+    InsertSorter insertSorter;
 
     @Before
     public void setUp() {
@@ -50,7 +51,6 @@ public class SortingTest {
 
         mergeSorter = new MergeSorter();
         mergeSorter.sort(array);
-
         assertArrayEquals("Merge sort method does not sort data", sortedArr, array);
     }
 
@@ -58,6 +58,14 @@ public class SortingTest {
     public void testQuickSorting() {
         quickSorter = new QuickSorter();
         quickSorter.sort(array);
+        assertArrayEquals(sortedArr, array);
+    }
+
+    @Test
+    public void testInsertSorting() {
+        insertSorter = new InsertSorter();
+        insertSorter.sort(array);
+
         assertArrayEquals(sortedArr, array);
     }
 }
