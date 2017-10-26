@@ -2,5 +2,9 @@ package com.netcracker.trainee.fillers;
 
 public interface FillStrategy {
 
-    public int[] doFill();
+    int[] doFill();
+
+    default String getName() {
+        return "no-name";
+    }
 }

@@ -1,9 +1,23 @@
 package com.netcracker.trainee.analyzer;
 
+import com.netcracker.trainee.fillers.FillStrategy;
 import com.netcracker.trainee.sorters.Sorter;
 
-public interface SorterAnalyzer {
+public abstract class SorterAnalyzer {
 
-    AnalysisResult makeAnalysis(Sorter sorter);
+    protected FillStrategy fillStrategy;
 
+    public SorterAnalyzer() {
+    }
+
+    public SorterAnalyzer(FillStrategy strategy) {
+        this.fillStrategy = strategy;
+    }
+
+
+    public abstract AnalysisResult makeAnalysis(Sorter sorter);
+
+    public void setFillStrategy(FillStrategy strategy){
+        this.fillStrategy = strategy;
+    }
 }

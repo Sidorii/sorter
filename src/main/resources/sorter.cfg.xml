@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<runner-config>
+    <fillers>
+        <input>
+            <property name="max" value="100"/>
+            <property name="length" value="110"/>
+            <property name="tile" value="37"/>
+        </input>
+
+        <annotationConfig>true</annotationConfig>
+    </fillers>
+
+    <experiment>
+
+        <fillStrategy>
+            <enableFillersStrategy>true</enableFillersStrategy>
+        </fillStrategy>
+
+        <analyzers>
+            <analyser>
+                <class>com.netcracker.trainee.analyzer.SorterTimeAnalyzer</class>
+            </analyser>
+        </analyzers>
+
+        <sorters>
+            <auto-scan>true</auto-scan>
+        </sorters>
+    </experiment>
+</runner-config>
