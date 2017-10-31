@@ -5,21 +5,22 @@ import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
-import java.util.Set;
+import java.awt.*;
+import java.util.List;
 
 class TableHeader {
 
     private String sortersCapture;
     private String arraysCapture;
-    private Set<Long> arraysLength;
+    private List<Long> arraysLength;
     private final XSSFCellStyle headerCellStyle;
     private final XSSFWorkbook workbook;
 
 
-     TableHeader(String sortersCapture,
-                       String arraysCapture,
-                       Set<Long> arraysLength,
-                       XSSFWorkbook workbook) {
+    TableHeader(String sortersCapture,
+                String arraysCapture,
+                List<Long> arraysLength,
+                XSSFWorkbook workbook) {
 
         this.sortersCapture = sortersCapture;
         this.arraysCapture = arraysCapture;
@@ -34,6 +35,7 @@ class TableHeader {
         headerCellStyle.setBorderRight(BorderStyle.THICK);
         headerCellStyle.setBorderBottom(BorderStyle.THICK);
         headerCellStyle.setBorderTop(BorderStyle.THICK);
+        headerCellStyle.setFillBackgroundColor((short) Color.LIGHT_GRAY.getRGB());
     }
 
     public void draw(int xRow, int xCol, XSSFSheet sheet) {
@@ -46,10 +48,10 @@ class TableHeader {
         XSSFCell cell = row.createCell(xCol);
         cell.setCellStyle(headerCellStyle);
         cell.setCellValue(sortersCapture);
-        sheet.addMergedRegion(new CellRangeAddress(xRow, xRow+1, xCol, xCol));
+        sheet.addMergedRegion(new CellRangeAddress(xRow, xRow + 1, xCol, xCol));
 
 
-        cell = row.createCell(xCol +1);
+        cell = row.createCell(xCol + 1);
         cell.setCellStyle(headerCellStyle);
         cell.setCellValue(arraysCapture);
 
@@ -59,7 +61,7 @@ class TableHeader {
 
 
         row = sheet.createRow(xRow + 1);
-        int cellIterator = xCol+1;
+        int cellIterator = xCol + 1;
 
         for (Long length : arraysLength) {
             cell = row.createCell(cellIterator++);

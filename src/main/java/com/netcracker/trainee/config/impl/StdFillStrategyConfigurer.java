@@ -8,13 +8,12 @@ import java.util.Set;
 
 public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
 
-
     private String basePackage;
+
 
     public StdFillStrategyConfigurer(String basePackage) {
         this.basePackage = basePackage;
     }
-
 
     @Override
     public Set<? extends FillStrategy> configure(XmlFillers fillers) {
@@ -22,7 +21,6 @@ public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
         if (fillers.isAnnotationCfg()) {
             return new AnnotationFillStrategyConfigurer(basePackage).configure(fillers);
         }
-
         return fillers.getStrategies();
     }
 }

@@ -17,6 +17,7 @@ public class Runner {
 
     public static final String BASE_PACKAGE = "com.netcracker.trainee";
 
+    //TODO: Comments are required
 
     public static void main(String[] args) throws IOException {
 

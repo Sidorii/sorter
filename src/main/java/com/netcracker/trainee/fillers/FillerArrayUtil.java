@@ -36,7 +36,6 @@ public class FillerArrayUtil {
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt();
         }
-
         return array;
     }
 
@@ -44,16 +43,14 @@ public class FillerArrayUtil {
     private static int[] growingSortedSequence(@Arg("length") int length) {
         int[] array = new int[length];
 
-        for(int i = 0; i < length; array[i] = i++);
-
+        for (int i = 0; i < length; array[i] = i++) ;
         return array;
     }
 
-    private static int[] fallingSortedSequence(@Arg("length") int length){
+    private static int[] fallingSortedSequence(@Arg("length") int length) {
         int[] array = new int[length];
 
-        for(int i = length; i > 0;array[--i] = i);
-
+        for (int i = length; i > 0; array[--i] = i) ;
         return array;
     }
 }

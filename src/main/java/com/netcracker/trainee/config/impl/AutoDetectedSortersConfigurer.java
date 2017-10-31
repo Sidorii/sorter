@@ -13,7 +13,6 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
     private String basePackage;
     private Class<? extends Sorter> parentClass;
 
-
     public AutoDetectedSortersConfigurer(Class<? extends Sorter> parentClass, String basePackage) {
         this.basePackage = basePackage;
         this.parentClass = parentClass;
@@ -24,7 +23,6 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
     public Set<Sorter> configure() {
         Set<Sorter> sorters = new HashSet<>();
         Reflections reflection = new Reflections(basePackage);
-
 
         reflection.getSubTypesOf(parentClass)
                 .stream()
@@ -38,8 +36,6 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
                                 " allowed for Sorter instantiation. Exception reason: " + e.getMessage());
                     }
                 });
-
         return sorters;
     }
-
 }

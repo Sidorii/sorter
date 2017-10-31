@@ -9,7 +9,6 @@ public class AnalysisResult {
     private String sortType;
 
 
-
     public long getSwapCount() {
         return swapCount;
     }
@@ -25,10 +24,10 @@ public class AnalysisResult {
         return this;
     }
 
+
     public String getFillName() {
         return fillName;
     }
-
 
 
     public AnalysisResult setSortType(String sortType) {
@@ -39,7 +38,6 @@ public class AnalysisResult {
     public String getSortType() {
         return sortType;
     }
-
 
     public long getExecutionTime() {
         return executionTime;

@@ -3,9 +3,12 @@ package com.netcracker.trainee.config;
 import com.netcracker.trainee.analyzer.Experiment;
 import com.netcracker.trainee.analyzer.SorterAnalyzer;
 import com.netcracker.trainee.config.impl.StdFillStrategyConfigurer;
-import com.netcracker.trainee.config.xml.XSreamXmlParser;
+import com.netcracker.trainee.config.xml.XStreamXmlParser;
 import com.netcracker.trainee.config.xml.XmlParser;
-import com.netcracker.trainee.config.xml.entities.*;
+import com.netcracker.trainee.config.xml.entities.XmlAnalyser;
+import com.netcracker.trainee.config.xml.entities.XmlExperiment;
+import com.netcracker.trainee.config.xml.entities.XmlFile;
+import com.netcracker.trainee.config.xml.entities.XmlFillers;
 import com.netcracker.trainee.fillers.FillStrategy;
 import com.netcracker.trainee.sorters.Sorter;
 
@@ -21,7 +24,7 @@ public class ExperimentConfigurer {
     private String xmlPath;
 
     public ExperimentConfigurer(String xmlPath) {
-        this(new XSreamXmlParser(), xmlPath);
+        this(new XStreamXmlParser(), xmlPath);
     }
 
     public ExperimentConfigurer(XmlParser parser, String xmlPath) {
@@ -39,13 +42,11 @@ public class ExperimentConfigurer {
             XmlFillers fillers = xmlFile.getFillers();
             XmlExperiment experiment = xmlFile.getExperiment();
 
-
             fillStrategies = new StdFillStrategyConfigurer(xmlFile.getBasePackage()).configure(fillers);
             sorters = sortersConfigurer.configure();
             analyzers = bindAnalysers(experiment.getAnalyzers());
 
             return new Experiment(fillStrategies, sorters, analyzers);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             throw new RuntimeException("Experiment creation failed");
@@ -64,10 +65,9 @@ public class ExperimentConfigurer {
             } catch (InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
                 throw new RuntimeException("Sorter analyser instantiation from xml failed. " +
-                    "Check if class has at least default access, has empty constructor");
+                        "Check if class has at least default access, has empty constructor");
             }
         });
-
         return result;
     }
 
@@ -75,5 +75,4 @@ public class ExperimentConfigurer {
     public void setSortersConfigurer(SortersConfigurer sortersConfigurer) {
         this.sortersConfigurer = sortersConfigurer;
     }
-
 }

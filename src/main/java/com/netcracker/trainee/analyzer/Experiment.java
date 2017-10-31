@@ -14,7 +14,6 @@ public class Experiment {
     private Set<? extends SorterAnalyzer> analyzers;
 
 
-
     public Experiment(Set<? extends FillStrategy> fillStrategies,
                       Set<? extends Sorter> sorters,
                       Set<? extends SorterAnalyzer> analyzers) {
@@ -27,7 +26,6 @@ public class Experiment {
 
 
     public final Set<AnalysisResult> makeExperiment() {
-
         Set<AnalysisResult> results = new HashSet<>();
 
         for (FillStrategy f: fillStrategies) {

@@ -60,10 +60,8 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
                 strategies.add(strategy);
             }
         }
-
         return strategies;
     }
-
 
 
     private Object[] mapInvocationArguments(Parameter[] parameters, Properties properties) {
@@ -74,7 +72,6 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
             if (arg != null) {
                 arguments.add(Integer.parseInt(properties.getProperty(arg.value())));
             }
-
         }
 
         return arguments.toArray();
