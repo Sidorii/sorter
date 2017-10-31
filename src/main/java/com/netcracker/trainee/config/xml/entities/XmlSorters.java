@@ -2,6 +2,7 @@ package com.netcracker.trainee.config.xml.entities;
 
 import com.netcracker.trainee.sorters.Sorter;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
 import java.util.Set;
 
@@ -10,6 +11,7 @@ public class XmlSorters {
 
     private Set<Sorter> sorters;
 
+    @XStreamAsAttribute
     @XStreamAlias("auto-scan")
     private boolean isAutoScan;
 

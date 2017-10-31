@@ -38,25 +38,27 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
         for (Method m : methods) {
             Filler filler = m.getAnnotation(Filler.class);
             Parameter[] parameters = m.getParameters();
-            strategy = new FillStrategy() {
 
-                @Override
-                public String getName() {
-                    return filler.name();
-                }
+            for (Properties p: fillers.getProperties()) {
+                strategy = new FillStrategy() {
 
-                @Override
-                public int[] doFill() {
-                    try {
-                        Object[] arguments = mapInvocationArguments(parameters,fillers);
-                        return (int[]) m.invoke(null, arguments);
-                    } catch (IllegalAccessException | InvocationTargetException e) {
-                        throw new RuntimeException("Method invocation failed. Reason:" + e.getMessage());
+                    @Override
+                    public String getName() {
+                        return filler.name();
                     }
-                }
-            };
 
-            strategies.add(strategy);
+                    @Override
+                    public int[] doFill() {
+                        try {
+                            Object[] arguments = mapInvocationArguments(parameters, p);
+                            return (int[]) m.invoke(null, arguments);
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            throw new RuntimeException("Method invocation failed. Reason:" + e.getMessage());
+                        }
+                    }
+                };
+                strategies.add(strategy);
+            }
         }
 
         return strategies;
@@ -64,13 +66,13 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
 
 
 
-    private Object[] mapInvocationArguments(Parameter[] parameters, XmlFillers fillers) {
+    private Object[] mapInvocationArguments(Parameter[] parameters, Properties properties) {
         List<Integer> arguments = new ArrayList<>();
 
         for (Parameter p : parameters) {
             Arg arg = p.getAnnotation(Arg.class);
             if (arg != null) {
-                arguments.add(Integer.parseInt((String)fillers.getProperties().get(arg.value())));
+                arguments.add(Integer.parseInt(properties.getProperty(arg.value())));
             }
 
         }

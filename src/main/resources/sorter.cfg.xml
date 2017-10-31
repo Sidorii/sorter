@@ -2,9 +2,23 @@
 <runner-config>
     <fillers>
         <input>
-            <property name="max" value="100"/>
-            <property name="length" value="110"/>
-            <property name="tile" value="37"/>
+            <properties>
+                <property name="max" value="100"/>
+                <property name="length" value="110"/>
+                <property name="tile" value="37"/>
+            </properties>
+
+            <properties>
+                <property name="max" value="1000"/>
+                <property name="length" value="1100"/>
+                <property name="tile" value="307"/>
+            </properties>
+
+            <properties>
+                <property name="max" value="10"/>
+                <property name="length" value="19"/>
+                <property name="tile" value="36"/>
+            </properties>
         </input>
 
         <annotationConfig>true</annotationConfig>
@@ -12,9 +26,7 @@
 
     <experiment>
 
-        <fillStrategy>
-            <enableFillersStrategy>true</enableFillersStrategy>
-        </fillStrategy>
+        <fillStrategy enableFillersStrategy="true"/>
 
         <analyzers>
             <analyser>
@@ -22,8 +34,7 @@
             </analyser>
         </analyzers>
 
-        <sorters>
-            <auto-scan>true</auto-scan>
-        </sorters>
+        <sorters auto-scan="true"/>
     </experiment>
+
 </runner-config>

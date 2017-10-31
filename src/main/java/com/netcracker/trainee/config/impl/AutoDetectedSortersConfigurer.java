@@ -13,6 +13,7 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
     private String basePackage;
     private Class<? extends Sorter> parentClass;
 
+
     public AutoDetectedSortersConfigurer(Class<? extends Sorter> parentClass, String basePackage) {
         this.basePackage = basePackage;
         this.parentClass = parentClass;
@@ -26,17 +27,17 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
 
 
         reflection.getSubTypesOf(parentClass)
+                .stream()
+                .filter((c) -> !Modifier.isAbstract(c.getModifiers()))
                 .forEach((c) -> {
-            try {
-                if (!Modifier.isAbstract(c.getModifiers())) {
-                    sorters.add(c.newInstance());
-                }
-            } catch (InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Sorter instantiation exception. Notice that only public empty constructor" +
-                                            " allowed for Sorter instantiation. Exception reason: " + e.getMessage());
-            }
-        });
+                    try {
+                        sorters.add(c.newInstance());
+                    } catch (InstantiationException | IllegalAccessException e) {
+                        e.printStackTrace();
+                        throw new RuntimeException("Sorter instantiation exception. Notice that only public empty constructor" +
+                                " allowed for Sorter instantiation. Exception reason: " + e.getMessage());
+                    }
+                });
 
         return sorters;
     }

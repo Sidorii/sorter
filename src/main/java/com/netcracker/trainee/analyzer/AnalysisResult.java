@@ -4,6 +4,41 @@ public class AnalysisResult {
 
     private long executionTime;
     private long arraySize;
+    private long swapCount;
+    private String fillName;
+    private String sortType;
+
+
+
+    public long getSwapCount() {
+        return swapCount;
+    }
+
+    public AnalysisResult setSwapCount(long swapCount) {
+        this.swapCount = swapCount;
+        return this;
+    }
+
+
+    public AnalysisResult setFillName(String fillName) {
+        this.fillName = fillName;
+        return this;
+    }
+
+    public String getFillName() {
+        return fillName;
+    }
+
+
+
+    public AnalysisResult setSortType(String sortType) {
+        this.sortType = sortType;
+        return this;
+    }
+
+    public String getSortType() {
+        return sortType;
+    }
 
 
     public long getExecutionTime() {
@@ -24,9 +59,11 @@ public class AnalysisResult {
         return this;
     }
 
+
     @Override
     public String toString() {
-        return "Execute time: " + executionTime + " nanoseconds,\nArray size: " + arraySize;
+        return "Execute time: " + executionTime + " nanoseconds,\nArray size: " + arraySize +
+                "\nSorter type: " + sortType + "\nFiller name: " + fillName + "\n==============\n";
     }
 }
 

@@ -21,10 +21,10 @@ public class SorterTimeAnalyzer extends SorterAnalyzer {
         long timeExecution = timeAnalyses(sorter, array);
 
 
-        return new AdvancedAnalysisResult()
+        return new AnalysisResult()
                 .setExecutionTime(timeExecution)
                 .setArraySize(array.length)
-                .setSortType(sorter.getClass().getName())
+                .setSortType(sorter.getClass().getSimpleName())
                 .setFillName(fillStrategy.getName());
     }
     private long timeAnalyses(Sorter sorter, int[] array) {

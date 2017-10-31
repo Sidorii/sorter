@@ -39,8 +39,6 @@ public class ExperimentConfigurer {
             XmlFillers fillers = xmlFile.getFillers();
             XmlExperiment experiment = xmlFile.getExperiment();
 
-            XmlFillStrategy fillStrategy = experiment.getFillStrategy();
-            XmlSorters xmlSorters = experiment.getSorters();
 
             fillStrategies = new StdFillStrategyConfigurer(xmlFile.getBasePackage()).configure(fillers);
             sorters = sortersConfigurer.configure();
@@ -55,7 +53,7 @@ public class ExperimentConfigurer {
     }
 
 
-    private Set<SorterAnalyzer> bindAnalysers(Collection<XmlAnalyser> analysers) {
+    private Set<? extends SorterAnalyzer> bindAnalysers(Collection<XmlAnalyser> analysers) {
 
         Set<SorterAnalyzer> result = new HashSet<>();
 

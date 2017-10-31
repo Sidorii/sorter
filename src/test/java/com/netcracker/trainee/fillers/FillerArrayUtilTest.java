@@ -1,12 +1,16 @@
 package com.netcracker.trainee.fillers;
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.Properties;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class FillerArrayUtilTest {
 
@@ -47,5 +51,4 @@ public class FillerArrayUtilTest {
 
         assertArrayEquals(expected,result);
     }
-
 }

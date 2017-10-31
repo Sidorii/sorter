@@ -1,9 +1,12 @@
 package com.netcracker.trainee.config.xml.entities;
 
+import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
+
 import java.util.Set;
 
 public class XmlFillStrategy  {
 
+    @XStreamAsAttribute
     private boolean enableFillersStrategy;
     private Set<XmlFillers> fillers;
 
