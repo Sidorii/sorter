@@ -1,7 +1,9 @@
 package com.netcracker.trainee.view.excel;
 
 import com.netcracker.trainee.analyzer.AnalysisResult;
+import com.netcracker.trainee.view.Chart;
 import com.netcracker.trainee.view.DrawAPI;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -64,6 +66,9 @@ public class ExcelDrawAPI implements DrawAPI {
                     arraysLength, workbook);
 
             tableHeader.draw(0, 0, sheet);
+            Chart chart = new Chart(sheet);
+            chart.buildChart(0,0,
+                    arraysLength.size(),table.getTableSize());
         }
     }
 

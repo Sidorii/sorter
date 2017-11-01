@@ -35,7 +35,7 @@ class TableHeader {
         headerCellStyle.setBorderRight(BorderStyle.THICK);
         headerCellStyle.setBorderBottom(BorderStyle.THICK);
         headerCellStyle.setBorderTop(BorderStyle.THICK);
-        headerCellStyle.setFillBackgroundColor((short) Color.LIGHT_GRAY.getRGB());
+        headerCellStyle.setFillForegroundColor(new XSSFColor(Color.LIGHT_GRAY));
     }
 
     public void draw(int xRow, int xCol, XSSFSheet sheet) {
