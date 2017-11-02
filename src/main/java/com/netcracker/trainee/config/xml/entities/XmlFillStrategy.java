@@ -1,29 +1,60 @@
 package com.netcracker.trainee.config.xml.entities;
 
+import com.netcracker.trainee.fillers.FillStrategy;
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 
+import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
 
-public class XmlFillStrategy  {
+@XStreamAlias("strategy")
+public class XmlFillStrategy {
 
     @XStreamAsAttribute
-    private boolean enableFillersStrategy;
-    private Set<XmlFillers> fillers;
+    private String id;
 
+    @XStreamAlias("input")
+    private Properties[] properties;
+    @XStreamAlias("annotationConfig")
+    private boolean isAnnotationCfg;
 
-    public Set<XmlFillers> getFillers() {
-        return fillers;
+    private Set<FillStrategy> strategies;
+
+    public XmlFillStrategy(){
+        strategies = new HashSet<>();
+        properties = new Properties[0];
     }
 
-    public void setFillers(Set<XmlFillers> fillers) {
-        this.fillers = fillers;
+    public Set<FillStrategy> getStrategies() {
+        return strategies;
     }
 
-    public boolean isEnableFillersStrategy() {
-        return enableFillersStrategy;
+    public void setStrategies(Set<FillStrategy> strategies) {
+        this.strategies = strategies;
     }
 
-    public void setEnableFillersStrategy(boolean enableFillersStrategy) {
-        this.enableFillersStrategy = enableFillersStrategy;
+    public boolean isAnnotationCfg() {
+        return isAnnotationCfg;
+    }
+
+    public void setAnnotationCfg(boolean annotationCfg) {
+        isAnnotationCfg = annotationCfg;
+    }
+
+    public Properties[] getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties[] properties) {
+        this.properties = properties;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

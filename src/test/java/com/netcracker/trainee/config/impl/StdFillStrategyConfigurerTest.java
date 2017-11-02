@@ -1,7 +1,6 @@
 package com.netcracker.trainee.config.impl;
 
-import com.netcracker.trainee.config.xml.entities.XmlFile;
-import com.netcracker.trainee.config.xml.entities.XmlFillers;
+import com.netcracker.trainee.config.xml.entities.XmlFillStrategy;
 import com.netcracker.trainee.fillers.FillStrategy;
 import com.netcracker.trainee.fillers.FillerArrayUtil;
 import org.junit.Test;
@@ -16,11 +15,11 @@ public class StdFillStrategyConfigurerTest {
 
 
     @Test
-    public void testEmpltyConfig() {
+    public void testEmptyConfig() {
 
         StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("");
 
-        XmlFillers fillers = new XmlFillers();
+        XmlFillStrategy fillers = new XmlFillStrategy();
         Set<? extends FillStrategy> result = configurer.configure(fillers);
 
         assertArrayEquals(result.toArray(), new FillStrategy[0]);
@@ -32,7 +31,7 @@ public class StdFillStrategyConfigurerTest {
     public void testBasePackageCfgZone() {
 
         StdFillStrategyConfigurer configurer1 = new StdFillStrategyConfigurer("com.netcracker.trainee.fillers");
-        XmlFillers fillers = new XmlFillers();
+        XmlFillStrategy fillers = new XmlFillStrategy();
         fillers.setAnnotationCfg(true);
 
         Set<? extends FillStrategy> result = configurer1.configure(fillers);
@@ -46,7 +45,7 @@ public class StdFillStrategyConfigurerTest {
 
         StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("");
 
-        XmlFillers fillers = new XmlFillers();
+        XmlFillStrategy fillers = new XmlFillStrategy();
         fillers.setAnnotationCfg(false);
 
         Set<FillStrategy> strategies = new HashSet<FillStrategy>(){

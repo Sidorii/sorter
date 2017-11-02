@@ -1,7 +1,7 @@
 package com.netcracker.trainee.config.impl;
 
 import com.netcracker.trainee.config.FillStrategyConfigurer;
-import com.netcracker.trainee.config.xml.entities.XmlFillers;
+import com.netcracker.trainee.config.xml.entities.XmlFillStrategy;
 import com.netcracker.trainee.fillers.FillStrategy;
 
 import java.util.Set;
@@ -16,11 +16,11 @@ public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
     }
 
     @Override
-    public Set<? extends FillStrategy> configure(XmlFillers fillers) {
+    public Set<? extends FillStrategy> configure(XmlFillStrategy fillStrategy) {
 
-        if (fillers.isAnnotationCfg()) {
-            return new AnnotationFillStrategyConfigurer(basePackage).configure(fillers);
+        if (fillStrategy.isAnnotationCfg()) {
+            return new AnnotationFillStrategyConfigurer(basePackage).configure(fillStrategy);
         }
-        return fillers.getStrategies();
+        return fillStrategy.getStrategies();
     }
 }

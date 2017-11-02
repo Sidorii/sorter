@@ -15,7 +15,6 @@ import java.io.IOException;
 
 public class Runner {
 
-    public static final String BASE_PACKAGE = "com.netcracker.trainee";
 
     //TODO: Comments are required
 
@@ -23,7 +22,6 @@ public class Runner {
 
         ExperimentConfigurer configurer = new ExperimentConfigurer("sorter.cfg.xml");
 
-        configurer.setSortersConfigurer(new AutoDetectedSortersConfigurer(Sorter.class, BASE_PACKAGE));
 
         Experiment experiment = configurer.createExperiment();
         ExcelDrawAPI drawAPI = new ExcelDrawAPI("/tmp/MyFirstExcel.xlsx");

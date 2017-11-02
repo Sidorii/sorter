@@ -1,15 +1,13 @@
 package com.netcracker.trainee.config.impl;
 
 import com.netcracker.trainee.config.FillStrategyConfigurer;
-import com.netcracker.trainee.config.xml.entities.XmlFillers;
+import com.netcracker.trainee.config.xml.entities.XmlFillStrategy;
 import com.netcracker.trainee.fillers.Arg;
 import com.netcracker.trainee.fillers.FillStrategy;
 import com.netcracker.trainee.fillers.Filler;
 import org.reflections.Reflections;
 import org.reflections.scanners.MethodAnnotationsScanner;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -26,7 +24,7 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
 
 
     @Override
-    public Set<FillStrategy> configure(XmlFillers fillers) {
+    public Set<FillStrategy> configure(XmlFillStrategy fillers) {
         Set<FillStrategy> strategies = new HashSet<>();
         FillStrategy strategy;
 

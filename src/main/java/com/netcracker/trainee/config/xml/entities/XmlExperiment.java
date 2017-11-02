@@ -1,12 +1,14 @@
 package com.netcracker.trainee.config.xml.entities;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.util.Set;
 
 @XStreamAlias("experiment")
 public class XmlExperiment {
 
+    @XStreamAlias("strategy")
     private XmlFillStrategy fillStrategy;
     private Set<XmlAnalyser> analyzers;
     private XmlSorters sorters;
