@@ -19,8 +19,14 @@
 
             <properties>
                 <property name="max" value="10"/>
-                <property name="length" value="19"/>
-                <property name="tile" value="36"/>
+                <property name="length" value="10"/>
+                <property name="tile" value="234"/>
+            </properties>
+
+            <properties>
+                <property name="max" value="10000"/>
+                <property name="length" value="10000"/>
+                <property name="tile" value="10000"/>
             </properties>
         </input>
 

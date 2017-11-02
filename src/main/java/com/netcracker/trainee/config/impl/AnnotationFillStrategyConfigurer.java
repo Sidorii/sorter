@@ -70,7 +70,12 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
         for (Parameter p : parameters) {
             Arg arg = p.getAnnotation(Arg.class);
             if (arg != null) {
-                arguments.add(Integer.parseInt(properties.getProperty(arg.value())));
+                String prop = properties.getProperty(arg.value());
+                if (prop == null) {
+                    throw new RuntimeException("Property value " + arg.value() +
+                            " for annotation @Arg is not defined.");
+                }
+                arguments.add(Integer.parseInt(prop));
             }
         }
 

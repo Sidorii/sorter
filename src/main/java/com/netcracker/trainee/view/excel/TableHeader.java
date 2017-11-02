@@ -1,6 +1,7 @@
 package com.netcracker.trainee.view.excel;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
@@ -66,6 +67,7 @@ class TableHeader {
         for (Long length : arraysLength) {
             cell = row.createCell(cellIterator++);
             cell.setCellStyle(headerCellStyle);
+            cell.setCellType(CellType.NUMERIC);
             cell.setCellValue(String.valueOf(length));
         }
     }

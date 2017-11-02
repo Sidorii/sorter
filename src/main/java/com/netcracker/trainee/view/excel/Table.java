@@ -1,6 +1,7 @@
 package com.netcracker.trainee.view.excel;
 
 import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -45,7 +46,7 @@ class Table {
 
         XSSFRow row = sheet.createRow(currentRow);
         XSSFCell cell = row.createCell(currentColl);
-
+        cell.setCellType(CellType.STRING);
         cell.setCellValue(sorterName);
         cell.setCellStyle(cellStyle);
 

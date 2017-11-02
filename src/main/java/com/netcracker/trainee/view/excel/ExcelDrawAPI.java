@@ -1,9 +1,7 @@
 package com.netcracker.trainee.view.excel;
 
 import com.netcracker.trainee.analyzer.AnalysisResult;
-import com.netcracker.trainee.view.Chart;
 import com.netcracker.trainee.view.DrawAPI;
-import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -36,14 +34,19 @@ public class ExcelDrawAPI implements DrawAPI {
             sheet.setColumnWidth(0, 4000);
             sheet.setColumnWidth(1, 3000);
 
-            Table table = new Table(2, 0, sheet);
 
             List<Long> arraysLength =
                     entry.getValue()
                             .stream()
                             .map(AnalysisResult::getArraySize)
                             .distinct()
+                            .sorted()
                             .collect(Collectors.toList());
+
+
+            Table table = new Table(2, 0, sheet);
+            Chart chart = new Chart(arraysLength, sheet);
+
 
             Map<String, List<Long>> rows = new HashMap<>();
 
@@ -60,15 +63,14 @@ public class ExcelDrawAPI implements DrawAPI {
 
             for (Map.Entry<String, List<Long>> row : rows.entrySet()) {
                 table.addRow(row.getKey(), row.getValue());
+                chart.addSeries(row.getKey(), row.getValue());
             }
 
             TableHeader tableHeader = new TableHeader("Sorters types", "Arrays length",
                     arraysLength, workbook);
 
             tableHeader.draw(0, 0, sheet);
-            Chart chart = new Chart(sheet);
-            chart.buildChart(0,0,
-                    arraysLength.size(),table.getTableSize());
+            chart.plot(table.getTableSize().getLastRow() + 2, 0);
         }
     }
 
