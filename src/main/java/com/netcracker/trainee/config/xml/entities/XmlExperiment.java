@@ -1,7 +1,6 @@
 package com.netcracker.trainee.config.xml.entities;
 
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 
 import java.util.Set;
 
@@ -10,7 +9,8 @@ public class XmlExperiment {
 
     @XStreamAlias("strategy")
     private XmlFillStrategy fillStrategy;
-    private Set<XmlAnalyser> analyzers;
+    @XStreamAlias("analyser-filters")
+    private Set<XmlFilter> filters;
     private XmlSorters sorters;
 
 
@@ -23,19 +23,11 @@ public class XmlExperiment {
         this.fillStrategy = fillStrategy;
     }
 
-    public Set<XmlAnalyser> getAnalyzers() {
-        return analyzers;
-    }
-
-    public void setAnalyzers(Set<XmlAnalyser> analyzers) {
-        this.analyzers = analyzers;
+    public Set<XmlFilter> getFilters() {
+        return filters;
     }
 
     public XmlSorters getSorters() {
         return sorters;
-    }
-
-    public void setSorters(XmlSorters sorters) {
-        this.sorters = sorters;
     }
 }

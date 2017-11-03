@@ -31,15 +31,7 @@ public class XmlSorters {
         return isAutoScan;
     }
 
-    public void setAutoScan(boolean autoScan) {
-        isAutoScan = autoScan;
-    }
-
     public String getBasePackage() {
         return basePackage;
-    }
-
-    public void setBasePackage(String basePackage) {
-        this.basePackage = basePackage;
     }
 }

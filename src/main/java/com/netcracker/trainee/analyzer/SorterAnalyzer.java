@@ -7,8 +7,7 @@ public abstract class SorterAnalyzer {
 
     protected FillStrategy fillStrategy;
 
-    protected SorterAnalyzer() {
-    }
+    protected SorterAnalyzer() {}
 
     protected SorterAnalyzer(FillStrategy strategy) {
         this.fillStrategy = strategy;

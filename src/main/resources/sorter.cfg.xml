@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <runner-config>
 
-
     <fillers>
         <strategy id="multiplyArrayCfg">
             <input>
@@ -38,11 +37,10 @@
     <experiment>
         <strategy id="multiplyArrayCfg"/>
 
-        <analyzers>
-            <analyser>
-                <class>com.netcracker.trainee.analyzer.SorterTimeAnalyzer</class>
-            </analyser>
-        </analyzers>
+        <analyser-filters>
+            <filter class-name="com.netcracker.trainee.analyzer.filter.LogFilter"/>
+            <filter class-name="com.netcracker.trainee.analyzer.filter.TimeFilter"/>
+        </analyser-filters>
 
         <sorters auto-scan="true">
             <basePackage>com.netcracker.trainee</basePackage>

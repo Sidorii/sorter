@@ -9,6 +9,9 @@ public class AnalysisResult {
     private String sortType;
 
 
+    protected AnalysisResult() {}
+
+
     public long getSwapCount() {
         return swapCount;
     }

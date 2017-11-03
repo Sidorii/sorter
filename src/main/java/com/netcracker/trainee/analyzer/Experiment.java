@@ -11,32 +11,30 @@ public class Experiment {
 
     private Set<? extends FillStrategy> fillStrategies;
     private Set<? extends Sorter> sorters;
-    private Set<? extends SorterAnalyzer> analyzers;
+    private SorterAnalyzer analyzer;
 
 
     public Experiment(Set<? extends FillStrategy> fillStrategies,
                       Set<? extends Sorter> sorters,
-                      Set<? extends SorterAnalyzer> analyzers) {
+                      SorterAnalyzer analyzer) {
 
         this.fillStrategies = fillStrategies;
         this.sorters = sorters;
-        this.analyzers = analyzers;
+        this.analyzer = analyzer;
     }
-
 
 
     public final Set<AnalysisResult> makeExperiment() {
         Set<AnalysisResult> results = new HashSet<>();
 
-        for (FillStrategy f: fillStrategies) {
-            for (SorterAnalyzer a : analyzers) {
-                a.setFillStrategy(f);
-                for (Sorter s : sorters) {
-                    AnalysisResult result = a.makeAnalysis(s);
-                    results.add(result);
-                }
+        for (FillStrategy f : fillStrategies) {
+            analyzer.setFillStrategy(f);
+            for (Sorter s : sorters) {
+                AnalysisResult result = analyzer.makeAnalysis(s);
+                results.add(result);
             }
         }
+
         return results;
     }
 }
