@@ -30,13 +30,12 @@ class TableHeader {
 
         headerCellStyle = workbook.createCellStyle();
 
-        headerCellStyle.setAlignment(HorizontalAlignment.FILL);
+        headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
         headerCellStyle.setWrapText(true);
-        headerCellStyle.setBorderLeft(BorderStyle.THICK);
-        headerCellStyle.setBorderRight(BorderStyle.THICK);
-        headerCellStyle.setBorderBottom(BorderStyle.THICK);
-        headerCellStyle.setBorderTop(BorderStyle.THICK);
-        headerCellStyle.setFillForegroundColor(new XSSFColor(Color.LIGHT_GRAY));
+        headerCellStyle.setBorderLeft(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderRight(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderTop(BorderStyle.MEDIUM);
     }
 
     public void draw(int xRow, int xCol, XSSFSheet sheet) {

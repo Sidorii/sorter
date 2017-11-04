@@ -31,8 +31,8 @@ class Table {
 
         cellStyle = sheet.getWorkbook().createCellStyle();
 
-        cellStyle.setAlignment(HorizontalAlignment.FILL);
         cellStyle.setWrapText(true);
+        cellStyle.setAlignment(HorizontalAlignment.CENTER);
         cellStyle.setBorderTop(BorderStyle.THIN);
         cellStyle.setBorderBottom(BorderStyle.THIN);
         cellStyle.setBorderRight(BorderStyle.THIN);
@@ -52,7 +52,9 @@ class Table {
 
         for (Long time : executionTimes) {
             cell = row.createCell(++currentColl);
-            cell.setCellValue(String.valueOf(time));
+            cell.setCellType(CellType.NUMERIC);
+            cell.setCellValue(time.intValue());
+
             cell.setCellStyle(cellStyle);
         }
         currentRow++;

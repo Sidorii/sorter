@@ -1,7 +1,21 @@
 package com.netcracker.trainee.sorters.impl;
 
+import com.netcracker.trainee.sorters.Sorter;
 import com.netcracker.trainee.sorters.SwapSorter;
 
+/**
+ * {@link QuickSorter} class is quick sorting implementation.
+ *
+ * @see <a href="https://en.wikipedia.org/wiki/Quicksort">Quicksort wiki</a>
+ * @see SwapSorter
+ * @see Sorter
+ * @see GrowingBubbleSorter
+ *
+ * @author Ivan Sidorenko
+ * @version 1.0
+ * @since 1.1
+ *
+ * */
 public class QuickSorter extends SwapSorter{
 
 
