@@ -12,7 +12,7 @@ import com.netcracker.trainee.sorters.SwapSorter;
  *
  * @author Ivan Sidrenko
  * @version 1.0
- * @since 1.1
+ * @since 1.0
  *
  * */
 public class GrowingBubbleSorter extends SwapSorter {

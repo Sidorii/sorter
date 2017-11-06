@@ -17,7 +17,7 @@ public class Runner {
         ExperimentConfigurer configurer = new XmlExperimentConfigurer("sorter.cfg.xml");
 
         Experiment experiment = configurer.createExperiment();
-        ExcelDrawAPI drawAPI = new ExcelDrawAPI("MyFirstExcel.xlsx");
+        ExcelDrawAPI drawAPI = new ExcelDrawAPI("/tmp/MyFirstExcel.xlsx");
 
         drawAPI.drawResult(experiment.makeExperiment());
 

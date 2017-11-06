@@ -4,35 +4,29 @@
     <fillers>
         <strategy id="multiplyArrayCfg">
             <input>
-                <properties>
-                    <property name="max" value="100"/>
-                    <property name="length" value="110"/>
-                    <property name="tile" value="37"/>
-                </properties>
 
                 <properties>
                     <property name="max" value="1000"/>
-                    <property name="length" value="1100"/>
+                    <property name="length" value="1010"/>
                     <property name="tile" value="307"/>
                 </properties>
 
                 <properties>
-                    <property name="max" value="10"/>
-                    <property name="length" value="10"/>
+                    <property name="max" value="2000"/>
+                    <property name="length" value="2000"/>
                     <property name="tile" value="234"/>
                 </properties>
 
                 <properties>
-                    <property name="max" value="10000"/>
-                    <property name="length" value="10000"/>
-                    <property name="tile" value="10000"/>
+                    <property name="max" value="3000"/>
+                    <property name="length" value="3000"/>
+                    <property name="tile" value="10"/>
                 </properties>
             </input>
 
             <annotationConfig>true</annotationConfig>
         </strategy>
     </fillers>
-
 
     <experiment>
         <strategy id="multiplyArrayCfg"/>

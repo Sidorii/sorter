@@ -3,10 +3,11 @@ package com.netcracker.trainee.sorters;
 /**
  * Abstract class {@link SwapSorter} is child from {@link Sorter} and used as parent or interface for sorting algorithms that swap elements durring sorting processing.
  *
+ * @see Sorter
+ *
  * @author Ivan Sidorenko
  * @version 1.0
- * @see Sorter
- * @since 1.1
+ * @since 1.0
  */
 abstract public class SwapSorter extends Sorter {
 

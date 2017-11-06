@@ -8,7 +8,7 @@ import com.netcracker.trainee.sorters.SwapSorter;
  * @see SwapSorter
  *
  * @author Ivan Sidorenko
- * @since 1.1
+ * @since 1.0
  * @version 1.0
  *
  * */

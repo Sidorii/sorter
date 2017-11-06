@@ -13,10 +13,11 @@ public abstract class SorterAnalyzer {
         this.fillStrategy = strategy;
     }
 
-
-    public abstract AnalysisResult makeAnalysis(Sorter sorter);
-
     public void setFillStrategy(FillStrategy strategy){
         this.fillStrategy = strategy;
     }
+
+
+    public abstract AnalysisResult makeAnalysis(Sorter sorter);
+
 }

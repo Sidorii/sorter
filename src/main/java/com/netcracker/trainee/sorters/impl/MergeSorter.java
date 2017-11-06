@@ -10,7 +10,7 @@ import java.util.Arrays;
  * @see Sorter
  *
  * @author Ivan Sidorenko
- * @since 1.1
+ * @since 1.0
  * @version 1.0
  *
  * */

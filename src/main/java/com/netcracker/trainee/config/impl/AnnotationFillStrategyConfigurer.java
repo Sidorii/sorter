@@ -13,31 +13,57 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.util.*;
 
-
+/**
+ * {@inheritDoc}
+ * Class used to configuration multiply {@link FillStrategy} from annotations.<br>
+ * Annotation used for config:<br>
+ * <ul>
+ *      <li>{@link Filler} - mark methods that used as array fillers.</li>
+ *      <li>{@link Arg} - sets values in method arguments from xml file</li>
+ * </ul>
+ *
+ * @see Arg
+ * @see Filler
+ * @see FillStrategyConfigurer
+ * @see StdFillStrategyConfigurer
+ * @see XmlFillStrategy
+ *
+ */
 public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer {
 
     private String basePackage;
 
+    /**
+     * @param basePackage Base package for searching fill strategies that marked by annotations (at least {@link Filler}
+     * */
     public AnnotationFillStrategyConfigurer(String basePackage) {
         this.basePackage = basePackage;
     }
 
 
+
+    /**
+     * {@inheritDoc}
+     * Use {@link Reflections reflection} for searching fillers in {@link AnnotationFillStrategyConfigurer#basePackage}
+     *
+     * @return Return set of {@link FillStrategy fill strategies} that builds on methods which marked by {@link Filler}
+     * annotation.
+     *
+     * */
     @Override
     public Set<FillStrategy> configure(XmlFillStrategy fillers) {
         Set<FillStrategy> strategies = new HashSet<>();
         FillStrategy strategy;
 
 
-        Reflections reflection = new Reflections(basePackage,new MethodAnnotationsScanner());
+        Reflections reflection = new Reflections(basePackage, new MethodAnnotationsScanner());
         Set<Method> methods = reflection.getMethodsAnnotatedWith(Filler.class);
-
 
         for (Method m : methods) {
             Filler filler = m.getAnnotation(Filler.class);
             Parameter[] parameters = m.getParameters();
 
-            for (Properties p: fillers.getProperties()) {
+            for (Properties p : fillers.getProperties()) {
                 strategy = new FillStrategy() {
 
                     @Override
@@ -76,7 +102,6 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
                 arguments.add(Integer.parseInt(prop));
             }
         }
-
         return arguments.toArray();
     }
 }

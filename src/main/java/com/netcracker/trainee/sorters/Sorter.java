@@ -8,7 +8,7 @@ package com.netcracker.trainee.sorters;
  * for sorting array of {@code int} type
  *
  * @author Ivan Sidorenko
- * @since 1.1
+ * @since 1.0
  * @version 1.0
  */
 abstract public class Sorter {
