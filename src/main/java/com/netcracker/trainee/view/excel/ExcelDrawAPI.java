@@ -15,12 +15,10 @@ public class ExcelDrawAPI implements DrawAPI {
     private XSSFWorkbook workbook;
     private String fileName;
 
-
     public ExcelDrawAPI(String fileName) {
         workbook = new XSSFWorkbook();
         this.fileName = fileName;
     }
-
 
     @Override
     public void drawResult(Set<AnalysisResult> results) {
@@ -43,14 +41,13 @@ public class ExcelDrawAPI implements DrawAPI {
                             .sorted()
                             .collect(Collectors.toList());
 
+            Table table = new Table("Sorters types", "Arrays length",
+                    arraysLength, sheet);
 
-            Table table = new Table(2, 0, sheet);
-            Chart chart = new Chart(arraysLength, sheet);
-
-
+            Chart chart = new Chart(table);
             Map<String, List<Long>> rows = new HashMap<>();
 
-            for (AnalysisResult r: entry.getValue()) {
+            for (AnalysisResult r : entry.getValue()) {
                 List<Long> executionTimes = rows.computeIfAbsent(r.getSortType(), k -> new ArrayList<>(arraysLength));
                 int index = arraysLength.indexOf(r.getArraySize());
 
@@ -66,10 +63,6 @@ public class ExcelDrawAPI implements DrawAPI {
                 chart.addSeries(row.getKey(), row.getValue());
             }
 
-            TableHeader tableHeader = new TableHeader("Sorters types", "Arrays length",
-                    arraysLength, workbook);
-
-            tableHeader.draw(0, 0, sheet);
             chart.plot(table.getTableSize().getLastRow() + 2, 0);
         }
     }

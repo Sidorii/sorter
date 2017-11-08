@@ -19,6 +19,10 @@ public class Chart {
     private Map<String, ChartDataSource<Long>> dataSourcesBuffer;
 
 
+    public Chart(Table table) {
+        this(table.getTableHeader().getArraysLength(), table.getTableContent().getSheet());
+    }
+
     public Chart(List<Long> title, XSSFSheet sheet) {
         seriesCount = 0;
         dataSourcesBuffer = new HashMap<>();

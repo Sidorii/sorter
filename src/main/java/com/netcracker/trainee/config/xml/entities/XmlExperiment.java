@@ -27,7 +27,7 @@ public class XmlExperiment {
         return filters;
     }
 
-    public XmlSorters getSorters() {
+    public XmlSorters getXmlSorters() {
         return sorters;
     }
 }

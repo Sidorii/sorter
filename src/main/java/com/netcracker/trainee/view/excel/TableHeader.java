@@ -3,6 +3,7 @@ package com.netcracker.trainee.view.excel;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.*;
 
@@ -14,35 +15,19 @@ class TableHeader {
     private String sortersCapture;
     private String arraysCapture;
     private List<Long> arraysLength;
-    private final XSSFCellStyle headerCellStyle;
-    private final XSSFWorkbook workbook;
-
 
     TableHeader(String sortersCapture,
                 String arraysCapture,
-                List<Long> arraysLength,
-                XSSFWorkbook workbook) {
+                List<Long> arraysLength) {
 
         this.sortersCapture = sortersCapture;
         this.arraysCapture = arraysCapture;
         this.arraysLength = arraysLength;
-        this.workbook = workbook;
-
-        headerCellStyle = workbook.createCellStyle();
-
-        headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
-        headerCellStyle.setWrapText(true);
-        headerCellStyle.setBorderLeft(BorderStyle.MEDIUM);
-        headerCellStyle.setBorderRight(BorderStyle.MEDIUM);
-        headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
-        headerCellStyle.setBorderTop(BorderStyle.MEDIUM);
     }
 
-    public void draw(int xRow, int xCol, XSSFSheet sheet) {
+    public int draw(int xRow, int xCol, XSSFSheet sheet) {
 
-        if (!sheet.getWorkbook().equals(workbook)) {
-            throw new IllegalArgumentException("Workbook does not contain current sheet");
-        }
+        XSSFCellStyle headerCellStyle = createCellStyle(sheet.getWorkbook());
 
         XSSFRow row = sheet.createRow(xRow);
         XSSFCell cell = row.createCell(xCol);
@@ -59,7 +44,6 @@ class TableHeader {
             sheet.addMergedRegion(new CellRangeAddress(xRow, xRow, cell.getColumnIndex(), arraysLength.size()));
         }
 
-
         row = sheet.createRow(xRow + 1);
         int cellIterator = xCol + 1;
 
@@ -69,5 +53,32 @@ class TableHeader {
             cell.setCellType(CellType.NUMERIC);
             cell.setCellValue(String.valueOf(length));
         }
+        return row.getRowNum();
+    }
+
+
+    private XSSFCellStyle createCellStyle(XSSFWorkbook workbook) {
+        XSSFCellStyle headerCellStyle = workbook.createCellStyle();
+
+        headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
+        headerCellStyle.setWrapText(true);
+        headerCellStyle.setBorderLeft(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderRight(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderBottom(BorderStyle.MEDIUM);
+        headerCellStyle.setBorderTop(BorderStyle.MEDIUM);
+
+        return headerCellStyle;
+    }
+
+    public List<Long> getArraysLength() {
+        return arraysLength;
+    }
+
+    public String getArraysCapture() {
+        return arraysCapture;
+    }
+
+    public String getSortersCapture() {
+        return sortersCapture;
     }
 }

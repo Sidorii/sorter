@@ -16,7 +16,7 @@ public interface SortersConfigurer {
     /**
      * Configure {@link Set set} of sorters.
      *
-     * @return Method returns {@link Set set} of children {@link Sorter} class.
+     * @return Method returns {@link Set set} of subclasses {@link Sorter} class.
      *
      * */
     Set<Sorter> configure();

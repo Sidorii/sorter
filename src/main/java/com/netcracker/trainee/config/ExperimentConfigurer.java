@@ -3,19 +3,21 @@ package com.netcracker.trainee.config;
 import com.netcracker.trainee.analyzer.Experiment;
 
 /**
- * Interface for {@link Experiment} configuring.
+ * Used for {@link Experiment} configuring.
  *
  * @author Ivan Sidorenko
- * @since 1.0
  * @version 1.0
- * */
+ * @since 1.0
+ */
 public interface ExperimentConfigurer {
 
     /**
      * Create {@link Experiment} from configuration.
      *
-     * @return {@link Experiment} instance with parameters that configured during method invocation.
-     *
-     * */
+     * @return new {@link Experiment} based on configuration witch defines
+     * kind of {@link com.netcracker.trainee.fillers.FillStrategy fill strategies},
+     * {@link com.netcracker.trainee.sorters.Sorter sorters} and
+     * {@link com.netcracker.trainee.analyzer.SorterAnalyzer sorter analysers}
+     */
     Experiment createExperiment();
 }

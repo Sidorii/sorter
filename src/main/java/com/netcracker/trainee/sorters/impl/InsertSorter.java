@@ -14,6 +14,13 @@ import com.netcracker.trainee.sorters.SwapSorter;
  * */
 public class InsertSorter extends SwapSorter {
 
+
+    private static final InsertSorter INSTANCE = new InsertSorter();
+
+    public static final InsertSorter getInstance() {
+        return INSTANCE;
+    }
+
     /**
      * Proceeding sorting input array by insert sorting method (when current element puts on it ordered place in
      * sorted sequence behind current element is).

@@ -6,17 +6,21 @@ import com.netcracker.trainee.sorters.SwapSorter;
 /**
  * {@link QuickSorter} class is quick sorting implementation.
  *
+ * @author Ivan Sidorenko
+ * @version 1.0
  * @see <a href="https://en.wikipedia.org/wiki/Quicksort">Quicksort wiki</a>
  * @see SwapSorter
  * @see Sorter
  * @see GrowingBubbleSorter
- *
- * @author Ivan Sidorenko
- * @version 1.0
  * @since 1.0
- *
- * */
-public class QuickSorter extends SwapSorter{
+ */
+public class QuickSorter extends SwapSorter {
+
+    private static final QuickSorter INSTANCE = new QuickSorter();
+
+    public static final QuickSorter getInstance() {
+        return INSTANCE;
+    }
 
     /**
      * Proceeding recursive sorting input array by quick sorting method
@@ -25,7 +29,7 @@ public class QuickSorter extends SwapSorter{
      *
      * @param array input int[] array that'll be sorted.
      * @throws NullPointerException when input array is null.
-     * */
+     */
     @Override
     public void sort(int[] array) {
         processing(array, 0, array.length - 1);

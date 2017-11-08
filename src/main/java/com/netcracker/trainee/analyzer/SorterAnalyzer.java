@@ -19,5 +19,4 @@ public abstract class SorterAnalyzer {
 
 
     public abstract AnalysisResult makeAnalysis(Sorter sorter);
-
 }

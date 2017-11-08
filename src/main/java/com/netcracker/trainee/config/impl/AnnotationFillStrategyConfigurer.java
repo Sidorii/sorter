@@ -32,29 +32,30 @@ import java.util.*;
 public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer {
 
     private String basePackage;
+    private XmlFillStrategy fillers;
 
     /**
-     * @param basePackage Base package for searching fill strategies that marked by annotations (at least {@link Filler}
+     * @param basePackage Base package for searching fill strategies that marked by annotations
+     *                    (at least {@link Filler}
      * */
-    public AnnotationFillStrategyConfigurer(String basePackage) {
+    public AnnotationFillStrategyConfigurer(String basePackage,XmlFillStrategy fillers) {
         this.basePackage = basePackage;
+        this.fillers = fillers;
     }
-
-
 
     /**
      * {@inheritDoc}
-     * Use {@link Reflections reflection} for searching fillers in {@link AnnotationFillStrategyConfigurer#basePackage}
+     * Use {@link Reflections reflection} for searching fillers in
+     * {@link AnnotationFillStrategyConfigurer#basePackage}
      *
-     * @return Return set of {@link FillStrategy fill strategies} that builds on methods which marked by {@link Filler}
-     * annotation.
+     * @return Return set of {@link FillStrategy fill strategies} that builds on methods which
+     * marked by {@link Filler} annotation.
      *
      * */
     @Override
-    public Set<FillStrategy> configure(XmlFillStrategy fillers) {
+    public Set<FillStrategy> configure() {
         Set<FillStrategy> strategies = new HashSet<>();
         FillStrategy strategy;
-
 
         Reflections reflection = new Reflections(basePackage, new MethodAnnotationsScanner());
         Set<Method> methods = reflection.getMethodsAnnotatedWith(Filler.class);

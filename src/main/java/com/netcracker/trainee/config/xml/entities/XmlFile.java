@@ -24,9 +24,7 @@ public class XmlFile {
         if (isStrategyFound) {
             return experiment;
         }
-
         findFillStrategyById(experiment.getFillStrategy().getId());
-
         return experiment;
     }
 

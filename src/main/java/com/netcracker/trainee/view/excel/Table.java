@@ -1,68 +1,48 @@
 package com.netcracker.trainee.view.excel;
 
-import org.apache.poi.ss.usermodel.BorderStyle;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.HorizontalAlignment;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFCellStyle;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 import java.util.List;
 
-class Table {
+public class Table {
 
-    private final int fRow;
-    private final int fColl;
-    private int lColl;
-
-    private int currentRow;
-    private final XSSFSheet sheet;
-    private final XSSFCellStyle cellStyle;
+    private TableHeader tableHeader;
+    private TableContent tableContent;
+    private int firstRow;
 
 
-    Table(int fRow, int fColl, XSSFSheet sheet) {
-        this.fRow = fRow;
-        this.fColl = fColl;
-        this.sheet = sheet;
-
-        currentRow = fRow;
-
-        cellStyle = sheet.getWorkbook().createCellStyle();
-
-        cellStyle.setWrapText(true);
-        cellStyle.setAlignment(HorizontalAlignment.CENTER);
-        cellStyle.setBorderTop(BorderStyle.THIN);
-        cellStyle.setBorderBottom(BorderStyle.THIN);
-        cellStyle.setBorderRight(BorderStyle.THIN);
-        cellStyle.setBorderLeft(BorderStyle.THIN);
+    Table(String sortersCapture, String arraysCapture, List<Long> arraysLength,
+          XSSFSheet sheet) {
+        this(sortersCapture, arraysCapture, arraysLength, 0, 0, sheet);
     }
 
+    Table(String sortersCapture, String arraysCapture, List<Long> arraysLength,
+          int row, int col, XSSFSheet sheet) {
 
+        this.firstRow = row;
+        this.tableHeader = new TableHeader(sortersCapture, arraysCapture, arraysLength);
 
-    public void addRow(String sorterName, List<Long> executionTimes){
-        int currentColl = fColl;
-
-        XSSFRow row = sheet.createRow(currentRow);
-        XSSFCell cell = row.createCell(currentColl);
-        cell.setCellType(CellType.STRING);
-        cell.setCellValue(sorterName);
-        cell.setCellStyle(cellStyle);
-
-        for (Long time : executionTimes) {
-            cell = row.createCell(++currentColl);
-            cell.setCellType(CellType.NUMERIC);
-            cell.setCellValue(time.intValue());
-
-            cell.setCellStyle(cellStyle);
-        }
-        currentRow++;
-        lColl = currentColl;
+        int resultRow = tableHeader.draw(firstRow, col, sheet);
+        this.tableContent = new TableContent(resultRow + 1, col, sheet);
     }
 
+    public void addRow(String sorterName, List<Long> executionTimes) {
+        tableContent.addRow(sorterName, executionTimes);
+    }
 
     public CellRangeAddress getTableSize() {
-        return new CellRangeAddress(fRow, currentRow, fColl, lColl);
+        CellRangeAddress address = tableContent.getTableContentSize();
+        address.setFirstRow(firstRow);
+
+        return address;
+    }
+
+    public TableHeader getTableHeader() {
+        return tableHeader;
+    }
+
+    public TableContent getTableContent() {
+        return tableContent;
     }
 }

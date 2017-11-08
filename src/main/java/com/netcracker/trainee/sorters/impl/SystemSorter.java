@@ -7,22 +7,25 @@ import java.util.Arrays;
 /**
  * Class {@link SystemSorter} is implementation of Java system sorting method.
  *
+ * @author Ivan Sidorenko
+ * @version 1.0
  * @see Arrays#sort(int[])
  * @see Sorter
- *
- * @author Ivan Sidorenko
  * @since 1.0
- * @version 1.0
- *
- * */
+ */
 public class SystemSorter extends Sorter {
+
+    private static final SystemSorter INSTANCE = new SystemSorter();
+
+    public static final SystemSorter getInstance() {
+        return INSTANCE;
+    }
 
     /**
      * Provide <b>array</b> sorting by {@code Arrays.sort(int[])} method.
      *
      * @see Arrays#sort(int[])
-     *
-     * */
+     */
     @Override
     public void sort(int[] array) {
         Arrays.sort(array);

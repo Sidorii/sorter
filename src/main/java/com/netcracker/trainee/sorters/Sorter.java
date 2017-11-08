@@ -8,8 +8,8 @@ package com.netcracker.trainee.sorters;
  * for sorting array of {@code int} type
  *
  * @author Ivan Sidorenko
- * @since 1.0
  * @version 1.0
+ * @since 1.0
  */
 abstract public class Sorter {
 
@@ -18,6 +18,6 @@ abstract public class Sorter {
      * Sorting algorithm is depending on {@code {@link Sorter}} class implementation.
      *
      * @param array is any size array of int type values.
-     * */
+     */
     abstract public void sort(int[] array);
 }

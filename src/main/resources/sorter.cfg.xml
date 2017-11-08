@@ -4,7 +4,6 @@
     <fillers>
         <strategy id="multiplyArrayCfg">
             <input>
-
                 <properties>
                     <property name="max" value="1000"/>
                     <property name="length" value="1010"/>

@@ -8,7 +8,8 @@ import org.junit.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 
 public class StdFillStrategyConfigurerTest {
@@ -17,24 +18,25 @@ public class StdFillStrategyConfigurerTest {
     @Test
     public void testEmptyConfig() {
 
-        StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("");
-
         XmlFillStrategy fillers = new XmlFillStrategy();
-        Set<? extends FillStrategy> result = configurer.configure(fillers);
+        StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("", fillers);
+
+        Set<? extends FillStrategy> result = configurer.configure();
 
         assertArrayEquals(result.toArray(), new FillStrategy[0]);
     }
 
 
-
     @Test
     public void testBasePackageCfgZone() {
 
-        StdFillStrategyConfigurer configurer1 = new StdFillStrategyConfigurer("com.netcracker.trainee.fillers");
         XmlFillStrategy fillers = new XmlFillStrategy();
         fillers.setAnnotationCfg(true);
 
-        Set<? extends FillStrategy> result = configurer1.configure(fillers);
+        StdFillStrategyConfigurer configurer1 =
+                new StdFillStrategyConfigurer("com.netcracker.trainee.fillers", fillers);
+
+        Set<? extends FillStrategy> result = configurer1.configure();
 
         assertEquals(4, result.size());
     }
@@ -43,26 +45,25 @@ public class StdFillStrategyConfigurerTest {
     @Test
     public void testAnnotationOrBaseCfgCase() {
 
-        StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("");
-
         XmlFillStrategy fillers = new XmlFillStrategy();
         fillers.setAnnotationCfg(false);
 
-        Set<FillStrategy> strategies = new HashSet<FillStrategy>(){
+        StdFillStrategyConfigurer configurer = new StdFillStrategyConfigurer("", fillers);
 
+        Set<FillStrategy> strategies = new HashSet<FillStrategy>() {
             {
                 add(() -> FillerArrayUtil.sortedArray(10));
-                add(() -> new int[]{1,2,3,-1,-134});
+                add(() -> new int[]{1, 2, 3, -1, -134});
             }
         };
 
         fillers.setStrategies(strategies);
 
-        Set<? extends FillStrategy> result = configurer.configure(fillers);
+        Set<? extends FillStrategy> result = configurer.configure();
 
         assertArrayEquals(strategies.toArray(), result.toArray());
         fillers.setAnnotationCfg(true);
-        result = configurer.configure(fillers);
+        result = configurer.configure();
 
         assertEquals(4, result.size());
     }
