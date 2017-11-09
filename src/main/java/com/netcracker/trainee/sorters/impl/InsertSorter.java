@@ -17,6 +17,10 @@ public class InsertSorter extends SwapSorter {
 
     private static final InsertSorter INSTANCE = new InsertSorter();
 
+    private InsertSorter() {
+
+    }
+
     public static final InsertSorter getInstance() {
         return INSTANCE;
     }
@@ -31,18 +35,14 @@ public class InsertSorter extends SwapSorter {
      * @throws NullPointerException if input array is null.
      * @throws IndexOutOfBoundsException if element index is out of bounds when swap between two elements proceeding.
      * */
-    public void sort(int[] array) {
-        if (array == null) {
-            throw new NullPointerException("Input array for sort method in InsertSort instance is null.");
-        }
-
+    public void makeSorting(int[] array) {
         int j;
 
         for (int i = 1; i < array.length; i++) {
             j = 0;
             while (j < i) {
                 if (array[i] < array[j]) {
-                    swap(array, i, j);
+                    swap(array, j,i);
                     break;
                 }
                 j++;
@@ -62,7 +62,7 @@ public class InsertSorter extends SwapSorter {
      * @throws IndexOutOfBoundsException will be thrown if index1 or index2 is out of array bounds.
      * */
     @Override
-    protected void swap(int[] array, int index1, int index2) {
+    protected void swap(int[] array, int index2, int index1) {
         if (array == null) {
             throw new NullPointerException("Input array for swap method is null.");
         }

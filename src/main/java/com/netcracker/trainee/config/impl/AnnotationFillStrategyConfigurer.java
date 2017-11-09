@@ -18,8 +18,8 @@ import java.util.*;
  * Class used to configuration multiply {@link FillStrategy} from annotations.<br>
  * Annotation used for config:<br>
  * <ul>
- *      <li>{@link Filler} - mark methods that used as array fillers.</li>
- *      <li>{@link Arg} - sets values in method arguments from xml file</li>
+ * <li>{@link Filler} - mark methods that used as array fillers.</li>
+ * <li>{@link Arg} - sets values in method arguments from xml file</li>
  * </ul>
  *
  * @see Arg
@@ -27,7 +27,6 @@ import java.util.*;
  * @see FillStrategyConfigurer
  * @see StdFillStrategyConfigurer
  * @see XmlFillStrategy
- *
  */
 public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer {
 
@@ -37,8 +36,13 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
     /**
      * @param basePackage Base package for searching fill strategies that marked by annotations
      *                    (at least {@link Filler}
-     * */
-    public AnnotationFillStrategyConfigurer(String basePackage,XmlFillStrategy fillers) {
+     * @throws IllegalArgumentException if {@link XmlFillStrategy} is null
+     */
+    public AnnotationFillStrategyConfigurer(String basePackage, XmlFillStrategy fillers) {
+        if (fillers == null) {
+            throw new IllegalArgumentException("XmlFillStrategy can't bu null for strategy configurer.");
+        }
+
         this.basePackage = basePackage;
         this.fillers = fillers;
     }
@@ -46,12 +50,14 @@ public class AnnotationFillStrategyConfigurer implements FillStrategyConfigurer 
     /**
      * {@inheritDoc}
      * Use {@link Reflections reflection} for searching fillers in
-     * {@link AnnotationFillStrategyConfigurer#basePackage}
+     * {@link AnnotationFillStrategyConfigurer#basePackage} by annotation
+     * {@link Filler}
      *
      * @return Return set of {@link FillStrategy fill strategies} that builds on methods which
      * marked by {@link Filler} annotation.
-     *
-     * */
+     * @throws RuntimeException if cannot invoke method for configuring fill strategy
+     *                          or method arguments configuration via annotation failed.
+     */
     @Override
     public Set<FillStrategy> configure() {
         Set<FillStrategy> strategies = new HashSet<>();

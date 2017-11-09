@@ -16,6 +16,7 @@ public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
 
     private String basePackage;
     private XmlFillStrategy fillStrategy;
+    protected FillStrategyConfigurer annotationFillStrategyCfg;
 
     /**
      * @param basePackage Base package for searching fill strategies that marked by annotations
@@ -24,6 +25,7 @@ public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
     public StdFillStrategyConfigurer(String basePackage, XmlFillStrategy fillStrategy) {
         this.fillStrategy = fillStrategy;
         this.basePackage = basePackage;
+        this.annotationFillStrategyCfg = new AnnotationFillStrategyConfigurer(basePackage, fillStrategy);
     }
 
     /**
@@ -41,7 +43,7 @@ public class StdFillStrategyConfigurer implements FillStrategyConfigurer {
     public Set<? extends FillStrategy> configure() {
 
         if (fillStrategy.isAnnotationCfg()) {
-            return new AnnotationFillStrategyConfigurer(basePackage, fillStrategy).configure();
+            return annotationFillStrategyCfg.configure();
         }
         return fillStrategy.getStrategies();
     }

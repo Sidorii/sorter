@@ -9,27 +9,27 @@ public class SorterFactory {
 
     public static final <T extends Sorter> T getSorter(Class<T> type) {
 
-        if (type.equals(FallingBubbleSorter.class)) {
+        if (FallingBubbleSorter.class.equals(type)) {
             return (T) FallingBubbleSorter.getInstance();
         }
 
-        if (type.equals(GrowingBubbleSorter.class)) {
+        if (GrowingBubbleSorter.class.equals(type)) {
             return (T) GrowingBubbleSorter.getInstance();
         }
 
-        if (type.equals(InsertSorter.class)) {
+        if (InsertSorter.class.equals(type)) {
             return (T) InsertSorter.getInstance();
         }
 
-        if (type.equals(MergeSorter.class)) {
+        if (MergeSorter.class.equals(type)) {
             return (T) MergeSorter.getInstance();
         }
 
-        if (type.equals(QuickSorter.class)) {
+        if (QuickSorter.class.equals(type)) {
             return (T) QuickSorter.getInstance();
         }
 
-        if (type.equals(SystemSorter.class)) {
+        if (SystemSorter.class.equals(type)) {
             return (T) SystemSorter.getInstance();
         }
 

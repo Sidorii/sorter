@@ -18,9 +18,13 @@ public class GrowingBubbleSorter extends SwapSorter {
 
     private static final GrowingBubbleSorter INSTANCE = new GrowingBubbleSorter();
 
+    private GrowingBubbleSorter() {
+    }
+
     public static final GrowingBubbleSorter getInstance() {
         return INSTANCE;
     }
+
 
     /**
      * Proceed soring input array by bubble sorting method with ascending enumeration of elements.
@@ -28,11 +32,10 @@ public class GrowingBubbleSorter extends SwapSorter {
      * {@inheritDoc}
      *
      * @param array any size int type array which'll be sorted.
-     * @throws NullPointerException      if input array is null.
      * @throws IndexOutOfBoundsException if element index is out of bounds when swap between two elements
      *                                   proceeding.
      */
-    public void sort(int[] array) {
+    public void makeSorting(int[] array) {
         for (int i = array.length - 1; i > 0; i--) {
             for (int j = 0; j < i; j++) {
                 if (array[j] > array[j + 1]) {

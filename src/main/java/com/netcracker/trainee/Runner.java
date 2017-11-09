@@ -9,9 +9,6 @@ import java.io.IOException;
 
 public class Runner {
 
-
-    //TODO: Comments are required
-
     public static void main(String[] args) throws IOException {
 
         ExperimentConfigurer configurer = new XmlExperimentConfigurer("sorter.cfg.xml");

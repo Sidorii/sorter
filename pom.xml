@@ -30,6 +30,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.easymock</groupId>
+            <artifactId>easymock</artifactId>
+            <version>3.1</version>
+            <scope>test</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -37,13 +43,11 @@
             <version>3.0.1</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.17</version>
         </dependency>
-
 
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
@@ -51,12 +55,10 @@
             <version>1.4.10</version>
         </dependency>
 
-
         <dependency>
             <groupId>org.reflections</groupId>
             <artifactId>reflections</artifactId>
             <version>0.9.10</version>
         </dependency>
-
     </dependencies>
 </project>

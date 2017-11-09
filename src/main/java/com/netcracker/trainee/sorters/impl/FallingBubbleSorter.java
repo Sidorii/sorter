@@ -18,6 +18,9 @@ public class FallingBubbleSorter extends SwapSorter {
 
     private static final FallingBubbleSorter INSTANCE = new FallingBubbleSorter();
 
+    private FallingBubbleSorter() {
+    }
+
     public static final FallingBubbleSorter getInstance() {
         return INSTANCE;
     }
@@ -28,11 +31,10 @@ public class FallingBubbleSorter extends SwapSorter {
      * {@inheritDoc}
      *
      * @param array any size int type array which'll be sorted.
-     * @throws NullPointerException      if input array is null.
      * @throws IndexOutOfBoundsException if element index is out of bounds when swap between two elements
      *                                   proceeding.
      */
-    public void sort(int[] array) {
+    public void makeSorting(int[] array) {
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = array.length - 1; j > i; j--) {

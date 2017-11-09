@@ -16,6 +16,10 @@ public class MergeSorter extends Sorter {
 
     private static final MergeSorter INSTANCE = new MergeSorter();
 
+    private MergeSorter() {
+
+    }
+
     public static final MergeSorter getInstance() {
         return INSTANCE;
     }
@@ -30,11 +34,10 @@ public class MergeSorter extends Sorter {
      * {@inheritDoc}
      *
      * @param array any size int type array which'll be sorted.
-     * @throws NullPointerException      if input array is null.
      * @throws IndexOutOfBoundsException if element index is out of bounds when swap between
      *                                   two elements proceeding.
      */
-    public void sort(int[] array) {
+    public void makeSorting(int[] array) {
         processing(array, 0, array.length - 1);
     }
 

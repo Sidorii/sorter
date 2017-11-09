@@ -18,6 +18,9 @@ public class QuickSorter extends SwapSorter {
 
     private static final QuickSorter INSTANCE = new QuickSorter();
 
+    private QuickSorter() {
+    }
+
     public static final QuickSorter getInstance() {
         return INSTANCE;
     }
@@ -28,10 +31,10 @@ public class QuickSorter extends SwapSorter {
      * sorting method)
      *
      * @param array input int[] array that'll be sorted.
-     * @throws NullPointerException when input array is null.
+     * @throws IndexOutOfBoundsException if index is out of array bounds
      */
     @Override
-    public void sort(int[] array) {
+    public void makeSorting(int[] array) {
         processing(array, 0, array.length - 1);
     }
 

@@ -34,6 +34,14 @@ public class AutoDetectedSortersConfigurer implements SortersConfigurer {
     }
 
     /**
+     * The very same as {@link AutoDetectedSortersConfigurer#AutoDetectedSortersConfigurer(Class, String)}
+     * but use default {@code basePackage} for {@link Sorter} subclasses detection
+     * */
+    public AutoDetectedSortersConfigurer(Class<? extends Sorter> parentClass) {
+        this(parentClass, "");
+    }
+
+    /**
      * {@inheritDoc}
      * Configuring set sorters which is subclasses of <b>parentClass</b> in
      * <b>basePackage</b> and all subpackages.

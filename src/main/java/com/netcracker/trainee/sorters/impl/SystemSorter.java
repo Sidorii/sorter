@@ -17,6 +17,9 @@ public class SystemSorter extends Sorter {
 
     private static final SystemSorter INSTANCE = new SystemSorter();
 
+    private SystemSorter() {
+    }
+
     public static final SystemSorter getInstance() {
         return INSTANCE;
     }
@@ -27,7 +30,7 @@ public class SystemSorter extends Sorter {
      * @see Arrays#sort(int[])
      */
     @Override
-    public void sort(int[] array) {
+    public void makeSorting(int[] array) {
         Arrays.sort(array);
     }
 }

@@ -1,6 +1,7 @@
 package com.netcracker.trainee.config.impl;
 
 import com.netcracker.trainee.sorters.Sorter;
+import com.netcracker.trainee.sorters.SwapSorter;
 import org.junit.Test;
 
 import java.util.Set;
@@ -10,42 +11,29 @@ import static org.junit.Assert.assertTrue;
 
 public class AutoDetectedSortersConfigurerTest {
 
-    AutoDetectedSortersConfigurer configurer = null;
-
     @Test
     public void testConfiguration() {
-        configurer = new AutoDetectedSortersConfigurer(TestClass.class, "");
+        AutoDetectedSortersConfigurer configurer =
+                new AutoDetectedSortersConfigurer(SwapSorter.class, "com.netcracker.trainee.sorters");
 
+        Set<Sorter> sorters = configurer.configure();
+
+        assertEquals(4, sorters.size());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullConfig() {
+        AutoDetectedSortersConfigurer configurer =
+                new AutoDetectedSortersConfigurer(null, null);
+        configurer.configure();
+    }
+
+    @Test
+    public void testEmptyResultIfNothingFound() {
+        AutoDetectedSortersConfigurer configurer =
+                new AutoDetectedSortersConfigurer(Sorter.class, "not existing package");
         Set<Sorter> result = configurer.configure();
 
-        assertEquals(1, result.size());
-        assertTrue(result.toArray()[0].getClass().equals(TestClass2.class));
+        assertEquals(0,result.size());
     }
-
-
-
-
-    public static class TestClass extends Sorter {
-
-        public TestClass() {}
-
-        @Override
-        public void sort(int[] array) {
-            // some operation going here. In out case is should be sorting
-        }
-
-    }
-
-
-    public static class TestClass2 extends TestClass {
-
-        // another Class for test case
-
-
-        @Override
-        public boolean equals(Object obj) {
-            return getClass().equals(obj.getClass());
-        }
-    }
-
 }

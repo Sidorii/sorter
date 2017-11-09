@@ -12,7 +12,7 @@ public final class ReflectionUtils {
     public final static <T> Set<Class<? extends T>> findSubclassesForClass(Class<T> clazz, String basePackage,
                                                                            boolean hasAbstract) {
         if (clazz == null) {
-            throw new NullPointerException("Attempt to find subclasses for null reference on clazz parameter.");
+            throw new IllegalArgumentException("Attempt to find subclasses for null reference on clazz parameter.");
         }
 
         basePackage = Optional.ofNullable(basePackage).orElse("");
